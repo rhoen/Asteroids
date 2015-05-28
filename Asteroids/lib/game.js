@@ -40,6 +40,7 @@
   Game.prototype.moveObjects = function () {
     this.allObjects().forEach(function (obj) {
       obj.move();
+      obj.decay && obj.decay();
     });
   };
 
@@ -66,6 +67,22 @@
   Game.prototype.step = function () {
     this.moveObjects();
     this.checkCollisions();
+    this.checkKeys();
+  };
+
+  Game.prototype.checkKeys = function () {
+    if (key.isPressed('up')) {
+      this.ship.power([0,-1]);
+    }
+    if (key.isPressed('right')) {
+      this.ship.power([1,0]);
+    }
+    if (key.isPressed('down')) {
+      this.ship.power([0,1]);
+    }
+    if (key.isPressed('left')) {
+      this.ship.power([-1,0]);
+    }
   };
 
   Game.prototype.remove = function (asteroid) {
