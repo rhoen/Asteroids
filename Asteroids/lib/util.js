@@ -31,8 +31,12 @@
   };
 
   Util.randAngle = function () {
-    var scale = Math.random() * 2 - 1 //num between -1 .. 1
-    return scale * Math.PI * 2
+    var scale = Math.random() * 2 - 1; //num between -1 .. 1
+    return scale * Math.PI * 2;
+  };
+
+  Util.midpoint = function(pos1, pos2) {
+    return [(pos1[0] + pos2[0]) / 2, (pos1[1] + pos2[1]) / 2];
   };
 
 })();

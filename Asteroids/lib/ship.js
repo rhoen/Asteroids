@@ -10,6 +10,8 @@
     args.speed = 0;
     args.angle = -Math.PI / 2;
     args.pos = [Asteroids.Game.DIM_X / 2, Asteroids.Game.DIM_Y / 2];
+    this.calculatePoints();
+    this.hitBoxRadius = Ship.HITBOXRADIUS;
     Asteroids.MovingObject.call(this, args);
   };
 
@@ -19,6 +21,7 @@
   Ship.COLOR = "#000aaa";
   Ship.MAXSPEED = 15;
   Ship.MINSPEED = -4;
+  Ship.HITBOXRADIUS = 1;
 
   Ship.prototype.turn = function (impulse) {
     this.angle += impulse;
@@ -61,42 +64,81 @@
     this.game.bullets.push(bullet);
   };
 
+  Ship.prototype.isCollidedWith = function (otherObject) {
+    var boxes = [];
+    var collision = false;
+    var collideFunc = Asteroids.MovingObject.prototype.isCollidedWith;
+    boxes.push({pos: this.pointPos});
+    boxes.push({pos: this.bottomPointPos});
+    boxes.push({pos: this.topPointPos});
+    boxes.push({pos: Asteroids.Util.midpoint(
+      this.pointPos,
+      this.bottomPointPos
+    )});
+    boxes.push({pos: Asteroids.Util.midpoint(
+      this.pointPos,
+      this.topPointPos
+    )});
+    boxes.forEach(function(box){
+      box.radius = this.hitBoxRadius;
+      if (collideFunc.call(box, otherObject)) {
+        console.log('colided!');
+        collision = true;
+      }
+    }.bind(this))
+    return collision;
+  };
+
+  Ship.prototype.calculatePoints = function () {
+    var r = this.radius;
+    var x, y;
+    if (this.pos) {
+      x = this.pos[0];
+      y = this.pos[1];
+    }
+    this.bottomAngle = (this.angle + 3 * Math.PI / 4);
+    this.topAngle = (this.angle - 3 * Math.PI / 4);
+    this.pointPos = [
+      x + Math.cos(this.angle) * r,
+      y + Math.sin(this.angle) * r
+    ];
+    this.bottomPointPos = [
+      x + Math.cos(this.bottomAngle) * r,
+      y + Math.sin(this.bottomAngle) * r
+    ];
+    this.topPointPos = [
+      x + Math.cos(this.angle - 3 * Math.PI / 4) * r,
+      y + Math.sin(this.angle - 3 * Math.PI / 4) * r
+    ];
+    this.innerPointPos = [
+      x + Math.cos(this.angle) * -0.2 * r,
+      y + Math.sin(this.angle) * -0.2 * r
+    ];
+  };
+
   Ship.prototype.draw = function (ctx) {
     // ctx.fillStyle = this.color;
-
-    var x = this.pos[0];
-    var y = this.pos[1];
-    var r = this.radius;
-    var bottomAngle = (this.angle + 3 * Math.PI / 4);
-    var topAngle = (this.angle - 3 * Math.PI / 4);
-    var pointX = Math.cos(this.angle) * r;
-    var pointY = Math.sin(this.angle) * r;
-    var bottomPointX = Math.cos(bottomAngle) * r;
-    var bottomPointY = Math.sin(bottomAngle) * r;
-    var topPointX = Math.cos(this.angle - 3 * Math.PI / 4) * r;
-    var topPointY = Math.sin(this.angle - 3 * Math.PI / 4) * r;
-    var innerPointX = Math.cos(this.angle) * -0.2 * r;
-    var innerPointY = Math.sin(this.angle) * -0.2 * r;
+    this.calculatePoints();
     if (this.engineOn) {
       ctx.beginPath();
       ctx.arc(
-        x,
-        y,
-        r,
-        bottomAngle,
-        topAngle
+        this.pos[0],
+        this.pos[1],
+        this.radius,
+        this.bottomAngle,
+        this.topAngle
       );
-      ctx.lineTo(x, y);
-      ctx.lineTo(x + bottomPointX, y + bottomPointY);
+      ctx.lineTo(this.pos[0], this.pos[1]);
+      ctx.lineTo(this.bottomPointPos[0], this.bottomPointPos[1]);
       ctx.fillStyle = "red";
       ctx.fill();
     }
     ctx.beginPath();
-    ctx.moveTo(x + pointX, y  + pointY);
-    ctx.lineTo(x + bottomPointX, y + bottomPointY);
-    ctx.lineTo(x + innerPointX, y + innerPointY);
-    ctx.lineTo(x + topPointX, y + topPointY);
-    ctx.lineTo(x + pointX, y + pointY);
+    ctx.moveTo(this.pointPos[0], this.pointPos[1]);
+    ctx.lineTo(this.bottomPointPos[0], this.bottomPointPos[1]);
+    ctx.lineTo(this.innerPointPos[0], this.innerPointPos[1]);
+    ctx.lineTo(this.topPointPos[0], this.topPointPos[1]);
+    ctx.lineTo(this.pointPos[0], this.pointPos[1]);
     ctx.stroke();
 
   };
