@@ -28,17 +28,30 @@
     this.vel[1] += impulse[1];
   };
 
+  Ship.prototype.move = function () {
+    // console.log("ship pos: ", this.pos)
+    // console.log("ship vel: ", this.vel);
+    this.pos[0] += this.vel[0];
+    this.pos[1] += this.vel[1];
+    this.game.wrap(this.pos);
+  };
   Ship.prototype.fireBullet = function () {
-    var vel = this.vel.slice(0);
+    console.log("bullet fired");
+    var newVel = [(this.vel[0] * 1.5), (this.vel[1] * 1.5)];
 
-    var pos = this.pos;
+    var pos = this.pos.slice(0);
 
-    if (vel == [0, 0]) {
-      vel = [0, -1];
+    if (newVel == [0, 0]) {
+      newVel = [0, -1];
     }
 
-    var bullet = new Asteroids.Bullet({vel: vel, pos: pos, game: this.game});
+    var bullet = new Asteroids.Bullet({
+      vel: newVel,
+      pos: pos,
+      game: this.game
+    });
     this.game.bullets.push(bullet);
+    debugger
   };
 
 })();
