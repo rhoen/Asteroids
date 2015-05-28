@@ -75,13 +75,15 @@
       this.ship.power([0,-1]);
     }
     if (key.isPressed('right')) {
-      this.ship.power([1,0]);
+      console.log(this.ship.angle);
+      this.ship.turn(Math.PI / 24);
     }
     if (key.isPressed('down')) {
-      this.ship.power([0,1]);
+      this.ship.power([0,0.3]);
     }
     if (key.isPressed('left')) {
-      this.ship.power([-1,0]);
+      console.log(this.ship.angle);
+      this.ship.turn(-Math.PI / 24);
     }
   };
 

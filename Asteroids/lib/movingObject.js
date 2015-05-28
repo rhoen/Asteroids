@@ -8,7 +8,8 @@
     this.vel = args.vel;
     this.radius = args.radius;
     this.color = args.color;
-    this.game = args.game
+    this.game = args.game;
+    this.angle = args.angle;
   };
 
   MovingObject.prototype.draw = function (ctx) {

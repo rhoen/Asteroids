@@ -7,6 +7,7 @@
     args.color = Ship.COLOR;
     args.radius = Ship.RADIUS;
     args.vel = [0,0];
+    args.angle = -Math.PI / 2;
     args.pos = [Asteroids.Game.DIM_X / 2, Asteroids.Game.DIM_Y / 2];
     Asteroids.MovingObject.call(this, args);
   };
@@ -15,6 +16,10 @@
 
   Ship.RADIUS = 40;
   Ship.COLOR = "#000aaa";
+
+  Ship.prototype.turn = function (impulse) {
+    this.angle += impulse;
+  };
 
   Ship.prototype.relocate = function () {
     var x = Math.random() * Asteroids.Game.DIM_X;
@@ -54,9 +59,8 @@
     var x = this.pos[0];
     var y = this.pos[1];
     var r = this.radius;
-    var angle = Math.PI / 4;
-    var pointX = Math.cos(angle) * r;
-    var pointY = Math.sin(angle) * r;
+    var pointX = Math.cos(this.angle) * r;
+    var pointY = Math.sin(this.angle) * r;
     ctx.arc(
       x,
       y,
