@@ -9,7 +9,8 @@
     args.vel = [0,0];
     args.speed = 0;
     args.angle = -Math.PI / 2;
-    args.pos = [Asteroids.Game.DIM_X / 2, Asteroids.Game.DIM_Y / 2];
+    // args.pos = [Asteroids.Game.DIM_X / 2, Asteroids.Game.DIM_Y / 2];
+    args.pos = [args.game.dimX / 2, args.game.dimY / 2];
     this.calculatePoints();
     this.hitBoxRadius = Ship.HITBOXRADIUS;
     Asteroids.MovingObject.call(this, args);
@@ -28,8 +29,10 @@
   };
 
   Ship.prototype.relocate = function () {
-    var x = Math.random() * Asteroids.Game.DIM_X;
-    var y = Math.random() * Asteroids.Game.DIM_Y;
+    // var x = Math.random() * Asteroids.Game.DIM_X;
+    // var y = Math.random() * Asteroids.Game.DIM_Y;
+    var x = 250;
+    var y = 250;
 
     this.pos = [x,y];
   };

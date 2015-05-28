@@ -3,19 +3,21 @@
     window.Asteroids = {};
   }
 
-  var Game = Asteroids.Game = function () {
+  var Game = Asteroids.Game = function (dimX, dimY) {
+    this.dimX = dimX;
+    this.dimY = dimY;
     this.asteroids = [];
     this.bullets = [];
     this.addAsteroids();
     this.ship = new Asteroids.Ship ({game: this});
   };
-  Game.DIM_X = 500;
-  Game.DIM_Y = 500;
+  // Game.DIM_X = 500;
+  // Game.DIM_Y = 500;
   Game.NUM_ASTEROIDS = 2;
 
   Game.prototype.randomPosition = function () {
-    var x = Math.random() * Game.DIM_X;
-    var y = Math.random() * Game.DIM_Y;
+    var x = Math.random() * this.dimX;
+    var y = Math.random() * this.dimY;
 
     return [x, y];
   };
@@ -30,7 +32,7 @@
   };
 
   Game.prototype.draw = function (ctx) {
-    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    ctx.clearRect(0, 0, this.dimX, this.dimY);
 
     this.allObjects().forEach(function (obj) {
       obj.draw(ctx);
@@ -45,14 +47,14 @@
   };
 
   Game.prototype.wrap = function (pos) {
-    if (pos[0] >= Game.DIM_X + 10) {
+    if (pos[0] >= this.dimX + 10) {
       pos[0] = 0;
     } else if (pos[0] <= -10) {
-      pos[0] = Game.DIM_X;
-    } else if (pos[1] >= Game.DIM_Y + 10) {
+      pos[0] = this.dimX;
+    } else if (pos[1] >= this.dimY + 10) {
       pos[1] = 0;
     } else if (pos[1] <= -10) {
-      pos[1] = Game.DIM_Y;
+      pos[1] = this.dimY;
     }
   };
 

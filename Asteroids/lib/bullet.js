@@ -6,11 +6,11 @@
   var Bullet = Asteroids.Bullet = function (args) {
     args.color = Bullet.COLOR;
     args.radius = Bullet.RADIUS;
-    args.life = 80;
+    this.life = Bullet.LIFE;
     Asteroids.MovingObject.call(this, args);
   }
 
-
+  Bullet.LIFE = 50;
   Bullet.COLOR = "#FF0000";
   Bullet.RADIUS = 2;
 
