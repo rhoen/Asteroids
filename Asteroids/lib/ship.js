@@ -87,8 +87,8 @@
       );
       ctx.lineTo(x, y);
       ctx.lineTo(x + bottomPointX, y + bottomPointY);
-      ctx.fill();
       ctx.fillStyle = "red";
+      ctx.fill();
     }
     ctx.beginPath();
     ctx.moveTo(x + pointX, y  + pointY);

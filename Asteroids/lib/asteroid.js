@@ -6,7 +6,8 @@
   var Asteroid = Asteroids.Asteroid = function (args) {
     args.color = Asteroid.COLOR;
     args.radius = Asteroid.RADIUS;
-    args.vel = Asteroids.Util.randVec();
+    args.speed = Asteroids.Util.randSpeed();
+    args.angle = Asteroids.Util.randAngle();
     Asteroids.MovingObject.call(this, args);
   };
   Asteroid.COLOR = "#000";
