@@ -44,12 +44,12 @@
 
   Ship.prototype.fireBullet = function () {
     var speed = (this.speed > 14) ? this.speed * 1.2 : 16;
-    var pointX = Math.cos(this.angle) * this.radius;
-    var pointY = Math.sin(this.angle) * this.radius;
+    var pointX = this.pos[0] + Math.cos(this.angle) * this.radius;
+    var pointY = this.pos[1] + Math.sin(this.angle) * this.radius;
     var bullet = new Asteroids.Bullet({
       // speed: speed,
       speed: speed,
-      pos: this.pos.slice(0),
+      pos: [pointX, pointY],
       angle: this.angle,
       game: this.game
     });
@@ -57,24 +57,40 @@
   };
 
   Ship.prototype.draw = function (ctx) {
-    ctx.fillStyle = this.color;
-    ctx.beginPath();
+    // ctx.fillStyle = this.color;
+
     var x = this.pos[0];
     var y = this.pos[1];
     var r = this.radius;
+    var bottomAngle = (this.angle + 3 * Math.PI / 4);
+    var topAngle = (this.angle - 3 * Math.PI / 4);
     var pointX = Math.cos(this.angle) * r;
     var pointY = Math.sin(this.angle) * r;
-    ctx.arc(
-      x,
-      y,
-      r,
-      0,
-      2 * Math.PI
-    );
-    ctx.moveTo(x, y);
-    ctx.lineTo(x + pointX, y  + pointY);
+    var bottomPointX = Math.cos(bottomAngle) * r;
+    var bottomPointY = Math.sin(bottomAngle) * r;
+    var topPointX = Math.cos(this.angle - 3 * Math.PI / 4) * r;
+    var topPointY = Math.sin(this.angle - 3 * Math.PI / 4) * r;
+
+    if (this.engineOn) {
+      ctx.beginPath();
+      ctx.arc(
+        x,
+        y,
+        r,
+        bottomAngle,
+        topAngle
+      );
+      ctx.fill();
+      ctx.fillStyle = "red";
+    }
+    ctx.beginPath();
+    ctx.moveTo(x + pointX, y  + pointY);
+    ctx.lineTo(x + bottomPointX, y + bottomPointY);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x + topPointX, y + topPointY);
+    ctx.lineTo(x + pointX, y + pointY);
     ctx.stroke();
-    // ctx.fill();
+
   };
 
 })();

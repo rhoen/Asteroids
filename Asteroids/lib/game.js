@@ -65,14 +65,17 @@
   };
 
   Game.prototype.step = function () {
+    this.checkKeys();
     this.moveObjects();
     this.checkCollisions();
-    this.checkKeys();
   };
 
   Game.prototype.checkKeys = function () {
     if (key.isPressed('up')) {
       this.ship.power(1);
+      this.ship.engineOn = true;
+    } else {
+      this.ship.engineOn = false;
     }
     if (key.isPressed('right')) {
       this.ship.turn(Math.PI / 24);
