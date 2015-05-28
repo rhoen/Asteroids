@@ -40,9 +40,11 @@
     this.allObjects().forEach(function (obj) {
       obj.draw(ctx);
     });
-    ctx.font = "16px sans-serif";
+    ctx.font = "14px sans-serif";
     ctx.fillStyle = "black";
-    ctx.fillText("Bullets fired: " + this.bulletsFired, 15, 20);
+    ctx.fillText("Lives Left: " + this.livesLeft, 15, 20);
+    ctx.fillText("Bullets fired: " + this.bulletsFired, 15, 35);
+    ctx.fillText("Asteroids destroyed: " + this.asteroidsDestroyed, 15, 50);
   };
 
   Game.prototype.moveObjects = function () {
@@ -68,11 +70,13 @@
     this.asteroids.forEach(function(asteroid) {
       if (this.ship.isCollidedWith(asteroid)) {
         this.ship.relocate();
+        this.livesLeft--;
       }
       this.bullets.forEach(function(bullet) {
         if (asteroid.isCollidedWith(bullet)) {
           this.remove(asteroid);
           this.remove(bullet);
+          this.asteroidsDestroyed++;
         }
       }.bind(this));
     }.bind(this));

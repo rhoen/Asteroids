@@ -31,10 +31,14 @@
   Ship.prototype.relocate = function () {
     // var x = Math.random() * Asteroids.Game.DIM_X;
     // var y = Math.random() * Asteroids.Game.DIM_Y;
-    var x = 250;
-    var y = 250;
-
+    var x = this.game.dimX / 2;
+    var y = this.game.dimY / 2;
+    this.setAfterDeathCooldown();
     this.pos = [x,y];
+  };
+
+  Ship.prototype.setAfterDeathCooldown =  function () {
+    this.afterDeathCooldown = 25;
   };
 
   Ship.prototype.power = function (impulse) {
@@ -48,6 +52,12 @@
     }
     if (this.speed < Ship.MINSPEED) {
       this.speed = Ship.MINSPEED;
+    }
+    if (this.afterDeathCooldown > 0) {
+      this.afterDeathCooldown--;
+      this.invincible = true;
+    } else {
+      this.invincible = false;
     }
 
     this.speed *= 0.95;
@@ -90,6 +100,9 @@
         collision = true;
       }
     }.bind(this))
+    if (this.invincible) {
+      collision = false;
+    }
     return collision;
   };
 
@@ -143,7 +156,13 @@
     ctx.lineTo(this.innerPointPos[0], this.innerPointPos[1]);
     ctx.lineTo(this.topPointPos[0], this.topPointPos[1]);
     ctx.lineTo(this.pointPos[0], this.pointPos[1]);
-    ctx.stroke();
+
+    if (this.invincible) {
+      ctx.fillStyle = 'purple';
+      ctx.fill();
+    } else {
+      ctx.stroke();
+    }
 
   };
 
