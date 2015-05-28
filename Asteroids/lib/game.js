@@ -75,22 +75,29 @@
       this.ship.power(1);
     }
     if (key.isPressed('right')) {
-      console.log(this.ship.angle);
       this.ship.turn(Math.PI / 24);
     }
     if (key.isPressed('down')) {
       this.ship.power(-0.3);
     }
     if (key.isPressed('left')) {
-      console.log(this.ship.angle);
       this.ship.turn(-Math.PI / 24);
     }
   };
 
-  Game.prototype.remove = function (asteroid) {
-    this.asteroids = this.asteroids.filter(function (el) {
-      return asteroid !== el;
-    })
+  Game.prototype.remove = function (obj) {
+    if (obj instanceof Asteroids.Bullet) {
+      this.bullets = this.bullets.filter(function(el) {
+        return obj !== el;
+      })
+    }
+
+    if (obj instanceof Asteroids.Asteroid) {
+      this.asteroids = this.asteroids.filter(function (el) {
+        return obj !== el;
+      })
+    }
+
   };
 
   Game.prototype.allObjects = function () {

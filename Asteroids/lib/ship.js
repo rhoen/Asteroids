@@ -35,19 +35,22 @@
 
   Ship.prototype.decay = function () {
     //called on every step.
-    this.speed *= 0.945;
+    if (this.speed > 15) {
+      this.speed = 15;
+    }
+
+    this.speed *= 0.95;
   };
 
   Ship.prototype.fireBullet = function () {
-    var vel = [(this.vel[0] * 1.5), (this.vel[1] * 1.5)];
-    // (vel[0] < 0) ? vel[0] -= 1.5 : vel[0] += 1.5;
-    // (vel[1] > 0) ? vel[1] -= 1.5 : vel[1] += 1.5;
-    console.log("ship vel: ",this.vel);
-    console.log("bullet vel: ", vel);
-
+    var speed = (this.speed > 14) ? this.speed * 1.2 : 16;
+    var pointX = Math.cos(this.angle) * this.radius;
+    var pointY = Math.sin(this.angle) * this.radius;
     var bullet = new Asteroids.Bullet({
-      vel: vel,
+      // speed: speed,
+      speed: speed,
       pos: this.pos.slice(0),
+      angle: this.angle,
       game: this.game
     });
     this.game.bullets.push(bullet);

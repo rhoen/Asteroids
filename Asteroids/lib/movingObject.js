@@ -11,6 +11,7 @@
     this.color = args.color;
     this.game = args.game;
     this.angle = args.angle;
+    this.life = args.life;
   };
 
   MovingObject.prototype.draw = function (ctx) {
