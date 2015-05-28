@@ -17,6 +17,8 @@
 
   Ship.RADIUS = 40;
   Ship.COLOR = "#000aaa";
+  Ship.MAXSPEED = 15;
+  Ship.MINSPEED = -4;
 
   Ship.prototype.turn = function (impulse) {
     this.angle += impulse;
@@ -35,8 +37,11 @@
 
   Ship.prototype.decay = function () {
     //called on every step.
-    if (this.speed > 15) {
-      this.speed = 15;
+    if (this.speed > Ship.MAXSPEED) {
+      this.speed = Ship.MAXSPEED;
+    }
+    if (this.speed < Ship.MINSPEED) {
+      this.speed = Ship.MINSPEED;
     }
 
     this.speed *= 0.95;
@@ -80,6 +85,8 @@
         bottomAngle,
         topAngle
       );
+      ctx.lineTo(x, y);
+      ctx.lineTo(x + bottomPointX, y + bottomPointY);
       ctx.fill();
       ctx.fillStyle = "red";
     }
