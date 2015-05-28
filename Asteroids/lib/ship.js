@@ -65,6 +65,7 @@
       game: this.game
     });
     this.game.bullets.push(bullet);
+    this.game.bulletsFired++;
   };
 
   Ship.prototype.isCollidedWith = function (otherObject) {

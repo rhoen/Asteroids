@@ -8,6 +8,9 @@
     this.dimY = dimY;
     this.asteroids = [];
     this.bullets = [];
+    this.bulletsFired = 0;
+    this.livesLeft = 3;
+    this.asteroidsDestroyed = 0;
     this.addAsteroids();
     this.ship = new Asteroids.Ship ({game: this});
   };
@@ -37,6 +40,9 @@
     this.allObjects().forEach(function (obj) {
       obj.draw(ctx);
     });
+    ctx.font = "16px sans-serif";
+    ctx.fillStyle = "black";
+    ctx.fillText("Bullets fired: " + this.bulletsFired, 15, 20);
   };
 
   Game.prototype.moveObjects = function () {
