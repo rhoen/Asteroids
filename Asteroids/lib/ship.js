@@ -15,7 +15,7 @@
 
   Asteroids.Util.inherits(Ship, Asteroids.MovingObject);
 
-  Ship.RADIUS = 40;
+  Ship.RADIUS = 30;
   Ship.COLOR = "#000aaa";
   Ship.MAXSPEED = 15;
   Ship.MINSPEED = -4;

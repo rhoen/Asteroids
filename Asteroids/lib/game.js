@@ -61,6 +61,12 @@
       if (this.ship.isCollidedWith(asteroid)) {
         this.ship.relocate();
       }
+      this.bullets.forEach(function(bullet) {
+        if (asteroid.isCollidedWith(bullet)) {
+          this.remove(asteroid);
+          this.remove(bullet);
+        }
+      }.bind(this));
     }.bind(this));
   };
 
