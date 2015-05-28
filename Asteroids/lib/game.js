@@ -72,14 +72,14 @@
 
   Game.prototype.checkKeys = function () {
     if (key.isPressed('up')) {
-      this.ship.power([0,-1]);
+      this.ship.power(1);
     }
     if (key.isPressed('right')) {
       console.log(this.ship.angle);
       this.ship.turn(Math.PI / 24);
     }
     if (key.isPressed('down')) {
-      this.ship.power([0,0.3]);
+      this.ship.power(-0.3);
     }
     if (key.isPressed('left')) {
       console.log(this.ship.angle);

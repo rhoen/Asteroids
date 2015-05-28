@@ -7,6 +7,7 @@
     args.color = Ship.COLOR;
     args.radius = Ship.RADIUS;
     args.vel = [0,0];
+    args.speed = 0;
     args.angle = -Math.PI / 2;
     args.pos = [Asteroids.Game.DIM_X / 2, Asteroids.Game.DIM_Y / 2];
     Asteroids.MovingObject.call(this, args);
@@ -18,7 +19,7 @@
   Ship.COLOR = "#000aaa";
 
   Ship.prototype.turn = function (impulse) {
-    this.angle += impulse;  
+    this.angle += impulse;
   };
 
   Ship.prototype.relocate = function () {
@@ -29,13 +30,12 @@
   };
 
   Ship.prototype.power = function (impulse) {
-    this.vel[0] += impulse[0];
-    this.vel[1] += impulse[1];
+    this.speed += impulse;
   };
 
   Ship.prototype.decay = function () {
     //called on every step.
-    this.vel = [this.vel[0] * 0.945, this.vel[1] * 0.95];
+    this.speed *= 0.945;
   };
 
   Ship.prototype.fireBullet = function () {

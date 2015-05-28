@@ -10,15 +10,14 @@
     ChildClass.prototype = new Surrogate();
   };
 
-  Util.vec = function(angle, speedX, speedY) {
-    return [Math.cos(angle) * speedX, Math.sin(angle) * speedY];
+  Util.vel = function(angle, speed) {
+    return [Math.cos(angle) * speed, Math.sin(angle) * speed];
   };
 
   Util.randVec = function () {
     var angle = Util.randAngle();
-    var speedX = Util.randSpeed();
-    var speedY = Util.randSpeed();
-    return Util.vec(angle, speedX, speedY);
+    var speed = Util.randSpeed();
+    return Util.vel(angle, speed);
   };
 
   Util.randSpeed = function () {
