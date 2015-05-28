@@ -13,7 +13,7 @@
 
   Asteroids.Util.inherits(Ship, Asteroids.MovingObject);
 
-  Ship.RADIUS = 10;
+  Ship.RADIUS = 40;
   Ship.COLOR = "#000aaa";
 
   Ship.prototype.relocate = function () {
@@ -35,10 +35,10 @@
 
   Ship.prototype.fireBullet = function () {
     var vel = [(this.vel[0] * 1.5), (this.vel[1] * 1.5)];
-
-    if (vel == [0, 0]) {
-      vel = [0, -1];
-    }
+    // (vel[0] < 0) ? vel[0] -= 1.5 : vel[0] += 1.5;
+    // (vel[1] > 0) ? vel[1] -= 1.5 : vel[1] += 1.5;
+    console.log("ship vel: ",this.vel);
+    console.log("bullet vel: ", vel);
 
     var bullet = new Asteroids.Bullet({
       vel: vel,
@@ -46,6 +46,28 @@
       game: this.game
     });
     this.game.bullets.push(bullet);
+  };
+
+  Ship.prototype.draw = function (ctx) {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    var x = this.pos[0];
+    var y = this.pos[1];
+    var r = this.radius;
+    var angle = Math.PI / 4;
+    var pointX = Math.cos(angle) * r;
+    var pointY = Math.sin(angle) * r;
+    ctx.arc(
+      x,
+      y,
+      r,
+      0,
+      2 * Math.PI
+    );
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + pointX, y  + pointY);
+    ctx.stroke();
+    // ctx.fill();
   };
 
 })();

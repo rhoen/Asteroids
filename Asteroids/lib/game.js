@@ -11,7 +11,7 @@
   };
   Game.DIM_X = 500;
   Game.DIM_Y = 500;
-  Game.NUM_ASTEROIDS = 2;
+  Game.NUM_ASTEROIDS = 0;
 
   Game.prototype.randomPosition = function () {
     var x = Math.random() * Game.DIM_X;
