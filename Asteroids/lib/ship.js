@@ -78,6 +78,10 @@
     this.game.bulletsFired++;
   };
 
+  Ship.prototype.activateShield = function() {
+    this.shieldOn = true;
+  };
+
   Ship.prototype.isCollidedWith = function (otherObject) {
     var boxes = [];
     var collision = false;

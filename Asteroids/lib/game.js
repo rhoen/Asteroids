@@ -104,6 +104,9 @@
     if (key.isPressed('left')) {
       this.ship.turn(-Math.PI / 24);
     }
+    if (key.isPressed('shiftKey')) {
+      this.ship.activateShield();
+    }
   };
 
   Game.prototype.remove = function (obj) {
