@@ -75,7 +75,8 @@
     var bottomPointY = Math.sin(bottomAngle) * r;
     var topPointX = Math.cos(this.angle - 3 * Math.PI / 4) * r;
     var topPointY = Math.sin(this.angle - 3 * Math.PI / 4) * r;
-
+    var innerPointX = Math.cos(this.angle) * -0.2 * r;
+    var innerPointY = Math.sin(this.angle) * -0.2 * r;
     if (this.engineOn) {
       ctx.beginPath();
       ctx.arc(
@@ -93,7 +94,7 @@
     ctx.beginPath();
     ctx.moveTo(x + pointX, y  + pointY);
     ctx.lineTo(x + bottomPointX, y + bottomPointY);
-    ctx.lineTo(x, y);
+    ctx.lineTo(x + innerPointX, y + innerPointY);
     ctx.lineTo(x + topPointX, y + topPointY);
     ctx.lineTo(x + pointX, y + pointY);
     ctx.stroke();
