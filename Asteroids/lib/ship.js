@@ -18,7 +18,7 @@
   Ship.COLOR = "#000aaa";
 
   Ship.prototype.turn = function (impulse) {
-    this.angle += impulse;
+    this.angle += impulse;  
   };
 
   Ship.prototype.relocate = function () {
