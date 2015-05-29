@@ -16,7 +16,7 @@
   };
   // Game.DIM_X = 500;
   // Game.DIM_Y = 500;
-  Game.NUM_ASTEROIDS = 2;
+  Game.NUM_ASTEROIDS = 3;
 
   Game.prototype.randomPosition = function () {
     var x = Math.random() * this.dimX;
@@ -28,6 +28,7 @@
   Game.prototype.addAsteroids = function () {
     for (var i = 0; i < Game.NUM_ASTEROIDS; i++) {
       this.asteroids.push(new Asteroids.Asteroid({
+        size: Asteroids.Asteroid.STARTINGSIZE,
         pos: this.randomPosition(),
         game: this
       }));
@@ -75,11 +76,18 @@
       }
       this.bullets.forEach(function(bullet) {
         if (asteroid.isCollidedWith(bullet)) {
+          debugger
           this.remove(asteroid);
+          asteroid.spawnChildren();
           this.remove(bullet);
           this.asteroidsDestroyed++;
         }
       }.bind(this));
+      if (this.ship.shield.isCollidedWith(asteroid)) {
+        this.remove(asteroid)
+        asteroid.spawnChildren();
+        this.asteroidsDestroyed++;
+      }
     }.bind(this));
   };
 
@@ -106,7 +114,9 @@
       this.ship.turn(-Math.PI / 24);
     }
     if (key.isPressed('z')) {
-      this.ship.shield.isOn = true;
+      if (this.ship.shield.life > 0) {
+        this.ship.shield.isOn = true;
+      }
     } else {
       this.ship.shield.isOn = false;
     }
