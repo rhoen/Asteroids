@@ -4,14 +4,15 @@
   }
 
   var Shield = Asteroids.Shield = function (args) {
-    args.color = Shielf.COLOR;
+    args.color = Shield.COLOR;
     args.radius = 0;
-    this.life = 100;
+    this.life = 500;
     this.isOn = false;
+    this.ship = args.ship;
     Asteroids.MovingObject.call(this, args);
   }
-  Shield.MAXRADIUS = 45;
-  Shield.COLOR = "purple";
+  Shield.MAXRADIUS = 50;
+  Shield.COLOR = "rgba(65, 139, 246, 0.4)";
 
   Asteroids.Util.inherits(Shield, Asteroids.MovingObject);
 
@@ -27,5 +28,16 @@
       }
     }
   };
+
+  Shield.prototype.move = function () {
+    this.pos = this.ship.pos;
+    return;
+  };
+
+  Shield.prototype.turnOn = function () {
+    if (this.radius <= Asteroids.Ship.RADIUS) {
+      this.radius = Asteroids.Ship.RADIUS + 1;
+    }
+  }
 
 })();

@@ -43,8 +43,9 @@
     ctx.font = "14px sans-serif";
     ctx.fillStyle = "black";
     ctx.fillText("Lives Left: " + this.livesLeft, 15, 20);
-    ctx.fillText("Bullets fired: " + this.bulletsFired, 15, 35);
-    ctx.fillText("Asteroids destroyed: " + this.asteroidsDestroyed, 15, 50);
+    ctx.fillText("Bullets Fired: " + this.bulletsFired, 15, 35);
+    ctx.fillText("Asteroids Destroyed: " + this.asteroidsDestroyed, 15, 50);
+    ctx.fillText("Shield Life: " + this.ship.shield.life, 15, 65);
   };
 
   Game.prototype.moveObjects = function () {
@@ -104,8 +105,10 @@
     if (key.isPressed('left')) {
       this.ship.turn(-Math.PI / 24);
     }
-    if (key.isPressed('shiftKey')) {
-      this.ship.activateShield();
+    if (key.isPressed('z')) {
+      this.ship.shield.isOn = true;
+    } else {
+      this.ship.shield.isOn = false;
     }
   };
 
@@ -125,7 +128,10 @@
   };
 
   Game.prototype.allObjects = function () {
-    return this.asteroids.concat(this.ship).concat(this.bullets);
+    return this.asteroids
+      .concat(this.ship)
+      .concat(this.bullets)
+      .concat(this.ship.shield);
   };
 
 })();

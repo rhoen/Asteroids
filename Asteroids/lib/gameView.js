@@ -23,6 +23,7 @@
     key('down', this.game.ship.power.bind(this.game.ship, -2));
     // key('left', this.game.ship.power.bind(this.game.ship, [-2,0]));
     key('space', this.game.ship.fireBullet.bind(this.game.ship));
+    key('z', this.game.ship.shield.turnOn.bind(this.game.ship.shield));
   }
 
 
