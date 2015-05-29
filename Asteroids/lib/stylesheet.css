@@ -1,4 +1,4 @@
-html, body, h3, p, ul, li {
+html, body, h1, h3, p, ul, li {
   font-style: inherit;
   font-family: sans-serif;
   background: transparent;
@@ -33,6 +33,17 @@ canvas {
   background-color: rgba(28, 119, 231, 0.84);
   padding:20px;
   border-radius: 2px;
+}
+.win-screen {
+  position: absolute;
+  width: 300px;
+  top:50px;
+  left:200px;
+  background-color: rgba(231, 92, 28, 0.84);
+  border-radius: 2px;
+  border:2px rgba(92, 28, 231, 0.84);
+  padding:20px;
+  text-align: center;
 }
 .hidden {
   display:none;

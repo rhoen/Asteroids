@@ -11,7 +11,8 @@
   GameView.prototype.start = function (canvasEl) {
     var ctx = canvasEl.getContext("2d");
     this.bindKeyHandlers();
-    setInterval(function () {
+    var intervalId = setInterval(function () {
+      this.checkWin();
       if (this.game.isPaused == false) {
         $(".pause-screen").addClass("hidden");
         this.game.step();
@@ -32,6 +33,14 @@
     key('p', this.game.togglePause.bind(this.game));
     key('z', this.game.ship.shield.turnOn.bind(this.game.ship.shield));
   }
+
+  GameView.prototype.checkWin = function () {
+    if (this.game.asteroids.length == 0) {
+      $(".win-screen").removeClass("hidden");
+      clearInterval(intervalId);
+    }
+
+  };
 
 
 
