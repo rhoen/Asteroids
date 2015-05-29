@@ -6,7 +6,7 @@
   var Game = Asteroids.Game = function (dimX, dimY) {
     this.dimX = dimX;
     this.dimY = dimY;
-    this.isPaused = false;
+    this.isPaused = true;
     this.asteroids = [];
     this.bullets = [];
     this.bulletsFired = 0;
@@ -72,7 +72,7 @@
   Game.prototype.checkCollisions = function() {
     this.asteroids.forEach(function(asteroid) {
       if (this.ship.isCollidedWith(asteroid)) {
-        this.ship.relocate();
+        this.ship.loseLife();
         this.livesLeft--;
       }
       this.bullets.forEach(function(bullet) {

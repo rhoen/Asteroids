@@ -13,9 +13,11 @@
     this.bindKeyHandlers();
     setInterval(function () {
       if (this.game.isPaused == false) {
+        $(".pause-screen").addClass("hidden");
         this.game.step();
         this.game.draw(ctx);
       } else {
+        $('.pause-screen').removeClass("hidden");
         return;
       }
     }.bind(this), 20);

@@ -30,7 +30,7 @@
     this.angle += impulse;
   };
 
-  Ship.prototype.relocate = function () {
+  Ship.prototype.loseLife = function () {
     // var x = Math.random() * Asteroids.Game.DIM_X;
     // var y = Math.random() * Asteroids.Game.DIM_Y;
     var x = this.game.dimX / 2;
