@@ -27,7 +27,7 @@
       return;
     }
     var newSize = this.size - 1;
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 3; i++) {
       this.game.asteroids.push(new Asteroids.Asteroid({
         size: newSize,
         pos: this.pos,

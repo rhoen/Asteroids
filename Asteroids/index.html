@@ -40,7 +40,7 @@
       var docWidth = $(document).width();
       var docHeight = $(document).height();
       var canvasEl = document.getElementById("game-canvas");
-      new Asteroids.GameView(
+      Asteroids.gameView = new Asteroids.GameView(
         new Asteroids.Game(
           docWidth,
           docHeight

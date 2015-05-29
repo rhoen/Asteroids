@@ -6,6 +6,7 @@
   var Game = Asteroids.Game = function (dimX, dimY) {
     this.dimX = dimX;
     this.dimY = dimY;
+    this.isPaused = false;
     this.asteroids = [];
     this.bullets = [];
     this.bulletsFired = 0;
@@ -76,7 +77,6 @@
       }
       this.bullets.forEach(function(bullet) {
         if (asteroid.isCollidedWith(bullet)) {
-          debugger
           this.remove(asteroid);
           asteroid.spawnChildren();
           this.remove(bullet);
@@ -121,7 +121,6 @@
       this.ship.shield.isOn = false;
     }
   };
-
   Game.prototype.remove = function (obj) {
     if (obj instanceof Asteroids.Bullet) {
       this.bullets = this.bullets.filter(function(el) {
@@ -136,7 +135,10 @@
     }
 
   };
-
+  Game.prototype.togglePause = function () {
+    (this.isPaused) ? (this.isPaused = false) : (this.isPaused = true);
+    return true;
+  };
   Game.prototype.allObjects = function () {
     return this.asteroids
       .concat(this.ship)

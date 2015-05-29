@@ -12,8 +12,12 @@
     var ctx = canvasEl.getContext("2d");
     this.bindKeyHandlers();
     setInterval(function () {
-      this.game.step();
-      this.game.draw(ctx);
+      if (this.game.isPaused == false) {
+        this.game.step();
+        this.game.draw(ctx);
+      } else {
+        return;
+      }
     }.bind(this), 20);
   };
 
@@ -23,7 +27,7 @@
     key('down', this.game.ship.power.bind(this.game.ship, -2));
     // key('left', this.game.ship.power.bind(this.game.ship, [-2,0]));
     key('space', this.game.ship.fireBullet.bind(this.game.ship));
-      
+    key('p', this.game.togglePause.bind(this.game));
     key('z', this.game.ship.shield.turnOn.bind(this.game.ship.shield));
   }
 
