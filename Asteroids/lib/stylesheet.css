@@ -34,7 +34,7 @@ canvas {
   padding:20px;
   border-radius: 2px;
 }
-.win-screen {
+.end-game {
   position: absolute;
   width: 300px;
   top:50px;

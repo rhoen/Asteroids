@@ -36,8 +36,23 @@
 
   GameView.prototype.checkWin = function () {
     if (this.game.asteroids.length == 0) {
-      $(".win-screen").removeClass("hidden");
+      console.log("win condition?");
+      $("#win-screen").removeClass("hidden");
+      // var accuracy = Math.floor(
+      //   this.game.bulletsFired / this.game.asteroidsDestroyed * 100);
+      // var cheat = "<p>But it seems you liked using your shield you hacker!</p>"
+      // $(".win-screen").append(
+      //   "<p>Your shooting accuracy was: " + accuracy + "</p>"
+      //   );
+      // if (this.game.shield.life < -50) {
+      //   $(".win-screen").append(cheat);
+      // }
       clearInterval(intervalId);
+    } else if (this.game.livesLeft == 0) {
+      $("#lose-screen").removeClass("hidden");
+      clearInterval(intervalId);
+    } else {
+      return;
     }
 
   };
