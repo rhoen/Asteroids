@@ -1,3 +1,15 @@
+html, body, h3, p, ul, li {
+  font-style: inherit;
+  font-family: sans-serif;
+  background: transparent;
+  color:inherit;
+  display: block;
+}
+ul {
+  list-style: none;
+  line-height: 1.2;
+}
+
 html, body {
   position:relative;
   width:100%;
@@ -18,8 +30,9 @@ canvas {
   width:300px;
   top: 50px;
   left: 300px;
-  background-color: red;
+  background-color: rgba(28, 119, 231, 0.84);
   padding:20px;
+  border-radius: 2px;
 }
 .hidden {
   display:none;
