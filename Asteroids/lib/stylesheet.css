@@ -1,4 +1,4 @@
-html, body, h1, h3, p, ul, li {
+html, body, h1, h3, p, ul, li, button {
   font-style: inherit;
   font-family: sans-serif;
   background: transparent;
@@ -47,4 +47,10 @@ canvas {
 }
 .hidden {
   display:none;
+}
+button {
+  background: rgba(147, 147, 147, 0.79);
+}
+button:hover {
+  background: rgba(223, 153, 153, 0.79);
 }

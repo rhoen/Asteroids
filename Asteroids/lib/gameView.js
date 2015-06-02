@@ -3,15 +3,17 @@
     window.Asteroids = {};
   }
 
-  var GameView = Asteroids.GameView = function (game, ctx) {
-    this.game = game;
+  var GameView = Asteroids.GameView = function (ctx, docWidth, docHeight) {
+    this.game = new Asteroids.Game(docWidth, docHeight);
     this.ctx = ctx;
+    this.docWidth = docWidth;
+    this.docHeight = docHeight;
   };
 
-  GameView.prototype.resetGame = function (width, height) {
+  GameView.prototype.resetGame = function () {
     this.game = new Asteroids.Game(
-      width,
-      height
+      this.docWidth,
+      this.docHeight
     );
     this.start(this.canvasEl);
   };
@@ -37,7 +39,8 @@
     key('down', this.game.ship.power.bind(this.game.ship, -2));
     // key('left', this.game.ship.power.bind(this.game.ship, [-2,0]));
     key('space', this.game.ship.fireBullet.bind(this.game.ship));
-    key('p', this.game.togglePause.bind(this.game));
+    key('a', this.game.togglePause.bind(this.game));
+    // key('r', this.resetGame.bind(this));
     key('z', this.game.ship.shield.turnOn.bind(this.game.ship.shield));
   }
 

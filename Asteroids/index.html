@@ -29,7 +29,7 @@
         <li>'spacebar' to shoot</li>
       </ul>
       <p>
-        Press 'p' to start!
+        Press 'a' to start!
       </p>
     </div>
 
@@ -46,18 +46,16 @@
       var docHeight = $(document).height();
       var canvasEl = document.getElementById("game-canvas");
       Asteroids.gameView = new Asteroids.GameView(
-        new Asteroids.Game(
-          docWidth,
-          docHeight
-        ),
-        canvasEl
+        canvasEl,
+        docWidth,
+        docHeight
       )
       Asteroids.gameView.canvasEl = canvasEl;
       Asteroids.gameView.start(canvasEl);
       var canvas = document.getElementById('game-canvas');
       canvas.setAttribute('width', docWidth);
       canvas.setAttribute('height', docHeight);
-      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView,docWidth, docHeight));
+      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView));
       $(".replay").on("click", $().addClass.bind($("#win-screen"), "hidden"));
       $(".replay").on("click", $().addClass.bind($("#lose-screen"), "hidden"));
       $("#win-screen").addClass("hidden");
