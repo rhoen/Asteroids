@@ -8,12 +8,19 @@
     this.ctx = ctx;
   };
 
+  GameView.prototype.resetGame = function (width, height) {
+    this.game = new Asteroids.Game(
+      width,
+      height
+    );
+    this.start();
+  };
   GameView.prototype.start = function (canvasEl) {
     var ctx = canvasEl.getContext("2d");
     this.bindKeyHandlers();
-    var intervalId = setInterval(function () {
+    this.intervalId = setInterval(function () {
       this.checkWin();
-      if (this.game.isPaused == false) {
+      if (this.game.isPaused === false) {
         $(".pause-screen").addClass("hidden");
         this.game.step();
         this.game.draw(ctx);
@@ -47,10 +54,10 @@
       // if (this.game.shield.life < -50) {
       //   $(".win-screen").append(cheat);
       // }
-      clearInterval(intervalId);
+      clearInterval(this.intervalId);
     } else if (this.game.livesLeft == 0) {
       $("#lose-screen").removeClass("hidden");
-      clearInterval(intervalId);
+      clearInterval(this.intervalId);
     } else {
       return;
     }

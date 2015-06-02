@@ -30,14 +30,13 @@
           docHeight
         ),
         canvasEl
-      ).start(canvasEl);
+      )
+      Asteroids.gameView.start(canvasEl);
       var canvas = document.getElementById('game-canvas');
       canvas.setAttribute('width', docWidth);
       canvas.setAttribute('height', docHeight);
-      // $(window).resize(function(){
-      //   canvas.setAttribute('width', $(document).width());
-      //   canvas.setAttribute('height', $(document).height());
-      // })
+
+      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView,docWidth, docHeight));
     </script>
 
     <div class="pause-screen">
@@ -55,9 +54,11 @@
 
     <div id="win-screen" class="end-game hidden">
       <h1>YOU WIN!!!!!</h1>
+      <button class="replay">Play Again?</button>
     </div>
     <div id="lose-screen" class="end-game hidden">
       <h1>you lose :(</h1>
+      <button class="replay">Play Again?</button>
     </div>
 
   </body>
