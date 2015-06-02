@@ -13,7 +13,7 @@
       width,
       height
     );
-    this.start();
+    this.start(this.canvasEl);
   };
   GameView.prototype.start = function (canvasEl) {
     var ctx = canvasEl.getContext("2d");

@@ -20,25 +20,6 @@
 
     <canvas id="game-canvas"></canvas>
 
-    <script type="text/javascript">
-      var docWidth = $(document).width();
-      var docHeight = $(document).height();
-      var canvasEl = document.getElementById("game-canvas");
-      Asteroids.gameView = new Asteroids.GameView(
-        new Asteroids.Game(
-          docWidth,
-          docHeight
-        ),
-        canvasEl
-      )
-      Asteroids.gameView.start(canvasEl);
-      var canvas = document.getElementById('game-canvas');
-      canvas.setAttribute('width', docWidth);
-      canvas.setAttribute('height', docHeight);
-
-      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView,docWidth, docHeight));
-    </script>
-
     <div class="pause-screen">
       <h3>Welcome to Asteroids!</h3>
       <ul>
@@ -52,14 +33,35 @@
       </p>
     </div>
 
-    <div id="win-screen" class="end-game hidden">
+    <div id="win-screen" class="end-game">
       <h1>YOU WIN!!!!!</h1>
       <button class="replay">Play Again?</button>
     </div>
-    <div id="lose-screen" class="end-game hidden">
+    <div id="lose-screen" class="end-game">
       <h1>you lose :(</h1>
       <button class="replay">Play Again?</button>
     </div>
-
+    <script type="text/javascript">
+      var docWidth = $(document).width();
+      var docHeight = $(document).height();
+      var canvasEl = document.getElementById("game-canvas");
+      Asteroids.gameView = new Asteroids.GameView(
+        new Asteroids.Game(
+          docWidth,
+          docHeight
+        ),
+        canvasEl
+      )
+      Asteroids.gameView.canvasEl = canvasEl;
+      Asteroids.gameView.start(canvasEl);
+      var canvas = document.getElementById('game-canvas');
+      canvas.setAttribute('width', docWidth);
+      canvas.setAttribute('height', docHeight);
+      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView,docWidth, docHeight));
+      $(".replay").on("click", $().addClass.bind($("#win-screen"), "hidden"));
+      $(".replay").on("click", $().addClass.bind($("#lose-screen"), "hidden"));
+      $("#win-screen").addClass("hidden");
+      $("#lose-screen").addClass("hidden");
+    </script>
   </body>
 </html>
