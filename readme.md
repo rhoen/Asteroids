@@ -17,3 +17,5 @@ Asteroid inherits from MovingObject and defines a spawnChildren method which cre
 The Ship redefines the draw method so that it is a triangle. The Ship also redefines the isCollidedWith method to accommodate its new shape. To take advantage of the circular shape of asteroids and their existing isCollidedWith methods, the Ship's isCollidedWith defines circular hitboxes at various points along the Ship's exterior. The decay method on ship slows the ship down - this produces the slowing effect noticeable if no arrow keys are pressed.
 ###Shield
 The Shield object exists on the ship. It's move method sets it's position to be the same as the ship. The decay method shrinks or grows the radius depending on the isOn status which is set by the keybinding for 'z'.
+###Bullet
+The Bullet object is created with a keybinding to the 'spacebar' with a position equal to the ship's point. The Bullet inherits from MovingObject. The decay method on Bullet reduces its life to ensure that it will be removed after a constant period of time.
