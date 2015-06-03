@@ -20,26 +20,28 @@
 
     <canvas id="game-canvas"></canvas>
 
-    <div class="pause-screen">
-      <h3>Welcome to Asteroids!</h3>
-      <ul>
-        <li>Arrow keys to move</li>
-        <li>'z' to activate shield</li>
-        <li>'p' to pause the game</li>
-        <li>'spacebar' to shoot</li>
-      </ul>
-      <p>
-        Press 'a' to start!
-      </p>
-    </div>
+    <div id="overlay">
+      <div class="pause-screen modal">
+        <h3>Welcome to Asteroids!</h3>
+        <ul>
+          <li>Arrow keys to move</li>
+          <li>'z' to activate shield</li>
+          <li>'p' to pause the game</li>
+          <li>'spacebar' to shoot</li>
+        </ul>
+        <p>
+          Press 'a' to start!
+        </p>
+      </div>
 
-    <div id="win-screen" class="end-game">
-      <h1>YOU WIN!!!!!</h1>
-      <button class="replay">Play Again?</button>
-    </div>
-    <div id="lose-screen" class="end-game">
-      <h1>you lose :(</h1>
-      <button class="replay">Play Again?</button>
+      <div id="win-screen" class="end-game modal">
+        <h1>YOU WIN!!!!!</h1>
+        <button class="replay">Play Again?</button>
+      </div>
+      <div id="lose-screen" class="end-game modal">
+        <h1>you lose :(</h1>
+        <button class="replay">Play Again?</button>
+      </div>
     </div>
     <script type="text/javascript">
       var docWidth = $(document).width();
