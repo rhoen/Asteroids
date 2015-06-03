@@ -36,11 +36,13 @@
 
       <div id="win-screen" class="end-game modal">
         <h1>YOU WIN!!!!!</h1>
-        <button class="replay">Play Again?</button>
+        <button class="replay">Click here to play again</button>
+        or press the letter 'r'.
       </div>
       <div id="lose-screen" class="end-game modal">
         <h1>you lose :(</h1>
-        <button class="replay">Play Again?</button>
+        <button class="replay">Click here to play again</button>
+        or press the letter 'r'.
       </div>
     </div>
     <script type="text/javascript">
@@ -58,6 +60,14 @@
       canvas.setAttribute('width', docWidth);
       canvas.setAttribute('height', docHeight);
       $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView));
+      $(document).keypress(function(event) {
+        console.log(event.keyCode);
+        if (event.keyCode == 114) { // if 'r' is pressed
+          Asteroids.gameView.replay();
+          $("#win-screen").addClass("hidden");
+          $("#lose-screen").addClass("hidden");
+        }
+      });
       $(".replay").on("click", $().addClass.bind($("#win-screen"), "hidden"));
       $(".replay").on("click", $().addClass.bind($("#lose-screen"), "hidden"));
       $("#win-screen").addClass("hidden");
