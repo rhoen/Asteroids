@@ -62,8 +62,10 @@ canvas {
   display:none;
 }
 button {
-  background: rgba(147, 147, 147, 0.79);
+  background: rgba(177, 212, 74, 0.79);
+  font-size:21px;
   margin: auto;
+  padding: 20px;
 }
 button:hover {
   background: rgba(223, 153, 153, 0.79);
