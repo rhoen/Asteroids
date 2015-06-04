@@ -4,10 +4,12 @@ html, body, h1, h3, p, ul, li, button {
   background: transparent;
   color:inherit;
   display: block;
+  border:none;
 }
 ul {
   list-style: none;
   line-height: 1.2;
+  margin-left: -40px;
 }
 
 html, body {
@@ -32,7 +34,8 @@ canvas {
 .modal {
   margin-top: 60px;
   float: left;
-  background-color: rgba(28, 119, 231, 0.84);
+  background-color: rgba(10, 188, 250, 0.9);
+  text-align: center;
   border-radius: 2px;
   border:2px rgba(92, 28, 231, 0.84);
   width: 300px;
@@ -60,6 +63,7 @@ canvas {
 }
 button {
   background: rgba(147, 147, 147, 0.79);
+  margin: auto;
 }
 button:hover {
   background: rgba(223, 153, 153, 0.79);
