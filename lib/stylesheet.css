@@ -16,8 +16,11 @@ html, body {
   height:100%;
   display: block;
   margin: auto;
-  border: 10px solid black;
   box-sizing: border-box;
+}
+body {
+  background-image: url("galaxy.jpg");
+  overflow: hidden;
 }
 canvas {
   box-sizing: border-box;
