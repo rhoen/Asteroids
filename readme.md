@@ -19,3 +19,10 @@ The Ship redefines the draw method so that it is a triangle. The Ship also redef
 The Shield object exists on the ship. It's move method sets it's position to be the same as the ship. The decay method shrinks or grows the radius depending on the isOn status which is set by the keybinding for 'z'.
 ###Bullet
 The Bullet object is created with a keybinding to the 'spacebar' with a position equal to the ship's point. The Bullet inherits from MovingObject. The decay method on Bullet reduces its life to ensure that it will be removed after a constant period of time.
+##Background
+####maxFunc()
+Returns the number of planets to be added each time addPlanets is called. Return a constant number for symmetry. Changing this by 1 unit produces different visual patterns. As this number gets larger, the number of movingObjects the game must render increases significantly. You can get very interesting results by sending a dynamic function that, say, returns different numbers depending on this.count.
+####countChange
+countChange is the modifier for the count variable that is used when calculating the angle to give to the next newly generated planet. Adjusting the countChange has a big effect on the visual pattern produced. This number affects the rotating effect, and certain values can eliminate the rotation.
+####modConstant
+modConstant changes how frequently the background will add planets (by setting the value that the count var is modded by). Increasing this number will reduce how often planets are added.
