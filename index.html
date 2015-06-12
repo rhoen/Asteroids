@@ -42,7 +42,7 @@
         <p>or press the letter 'c'.</p>
       </div>
       <div id="lose-screen" class="end-game modal">
-        <h1>you lose :(</h1>
+        <h1>you lose :( your final score: <span id="score-element"></h1>
         <button class="replay">Click to play again</button>
         <p>or press the letter 'r'.</p>
       </div>
@@ -57,13 +57,15 @@
         docHeight
       )
       Asteroids.gameView.canvasEl = canvasEl;
+      Asteroids.gameView.bindKeyHandlers();
       Asteroids.gameView.start(canvasEl);
+
       var canvas = document.getElementById('game-canvas');
       canvas.setAttribute('width', docWidth);
       canvas.setAttribute('height', docHeight);
       $("#lose-screen .replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView));
       $("#win-screen .replay").on("click", Asteroids.gameView.levelUp.bind(Asteroids.gameView));
-      // $("#win-screen .replay").on("click", Asteroids.gameView.start.bind(Asteroids.gameView));
+
       $(document).keypress(function(event) {
         console.log(event.keyCode);
         if (event.keyCode == 114) { // if 'r' is pressed
