@@ -61,7 +61,9 @@
       var canvas = document.getElementById('game-canvas');
       canvas.setAttribute('width', docWidth);
       canvas.setAttribute('height', docHeight);
-      $(".replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView));
+      $("#lose-screen .replay").on("click", Asteroids.gameView.resetGame.bind(Asteroids.gameView));
+      $("#win-screen .replay").on("click", Asteroids.gameView.levelUp.bind(Asteroids.gameView));
+      // $("#win-screen .replay").on("click", Asteroids.gameView.start.bind(Asteroids.gameView));
       $(document).keypress(function(event) {
         console.log(event.keyCode);
         if (event.keyCode == 114) { // if 'r' is pressed
