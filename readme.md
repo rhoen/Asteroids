@@ -1,7 +1,7 @@
 #Asteroids
 A 2D Spaceship-Shooter Browser Game
 [galaxyshooter.space to play](galaxyshooter.space/)
-galaxyshooter.space
+(galaxyshooter.space)
 
 Asteroids uses the HTML5 Canvas element to draw to the browser. A game loop calls the draw method on the game which in turn calls a draw method on every game object every 20 milliseconds (50 fps). This game is written in javascript.
 ##Objects
