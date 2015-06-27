@@ -67,7 +67,6 @@
       $("#win-screen .replay").on("click", Asteroids.gameView.levelUp.bind(Asteroids.gameView));
 
       $(document).keypress(function(event) {
-        console.log(event.keyCode);
         if (event.keyCode == 114) { // if 'r' is pressed
           // Asteroids.gameView.replay();
           $("#win-screen").addClass("hidden");
