@@ -280,6 +280,10 @@
     return k;
   }
 
+  function resetDownKeys () {
+    _downKeys = [];
+  };
+
   // set window.key and window.key.set/get/deleteScope, and the default filter
   global.key = assignKey;
   global.key.setScope = setScope;
@@ -290,6 +294,7 @@
   global.key.getPressedKeyCodes = getPressedKeyCodes;
   global.key.noConflict = noConflict;
   global.key.unbind = unbindKey;
+  global.key.resetDownKeys = resetDownKeys;
 
   if(typeof module !== 'undefined') module.exports = assignKey;
 
